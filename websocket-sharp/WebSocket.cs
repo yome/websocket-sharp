@@ -2115,11 +2115,13 @@ namespace WebSocketSharp
     {
       if (_proxyUri != null) {
         _tcpClient = new TcpClient (_proxyUri.DnsSafeHost, _proxyUri.Port);
+        _tcpClient.NoDelay = true;
         _stream = _tcpClient.GetStream ();
         sendProxyConnectRequest ();
       }
       else {
         _tcpClient = new TcpClient (_uri.DnsSafeHost, _uri.Port);
+        _tcpClient.NoDelay = true;
         _stream = _tcpClient.GetStream ();
       }
 
